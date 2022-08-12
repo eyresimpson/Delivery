@@ -1,15 +1,9 @@
-主进程
-
-## 渲染器(mainWindow)
-主渲染器，用于渲染用户界面
-## 渲染器(httpController)
-次级渲染器，用于建立Http服务器，无窗口
-## 渲染器(tcpController)
-次级渲染器，用于建立Tcp服务器，无窗口
-## 渲染器(requestController)
-次级渲染器，用于发送各类请求，无窗口
-
-
-## 系统启动
-1. 建立渲染器之间通信链接
-
+## 主要技术与框架
+- 基础：Vue3 + Electron + Typescript
+- 存储：vuex
+- 路由：vue-router
+- 日志：winston
+- 日期处理：silly-datetime
+- 图形组件：ElementUI Plus
+- 服务端：Express
+- 客户端：Axios
