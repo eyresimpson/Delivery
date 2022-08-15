@@ -2,26 +2,6 @@
 <template>
   <el-row class="mb-4" style="margin-bottom: 55px">
     <el-col :span="24">
-      <el-collapse v-model="activeNames">
-        <el-collapse-item title="控制台" name="1">
-          <el-row>
-            <span class="label">服务类型</span>
-            <el-input prefix-icon="HelpFilled" class="opt" v-model="port" placeholder="开放的端口，默认8080" />
-          </el-row>
-          <el-row>
-            <span class="label">端口</span>
-            <el-input prefix-icon="HelpFilled" class="opt" v-model="port" placeholder="开放的端口，默认8080" />
-          </el-row>
-          <el-row>
-            <span class="label">上下文地址</span>
-            <el-input prefix-icon="HelpFilled" class="opt" v-model="context" placeholder="上下文地址" />
-          </el-row>
-          <el-row>
-            <span class="label">返回数据</span>
-            <el-input prefix-icon="HelpFilled" class="opt" v-model="port" placeholder="向后台返回的数据" />
-          </el-row>
-        </el-collapse-item>
-        <el-collapse-item title="网络" name="3">
           <div style="margin-right: 15px">
             <el-result v-if="requestList.length == 0" title="空状态">
               <template #icon>
@@ -40,8 +20,6 @@
               </el-timeline-item>
             </el-timeline>
           </div>
-        </el-collapse-item>
-      </el-collapse>
     </el-col>
   </el-row>
   <div>
@@ -62,7 +40,6 @@ import RequestCard from '@/components/RequestCard.vue'
 import { getDatetime } from "@/tools/datetime"
 import { info } from "@/tools/recorder";
 
-const activeNames = ref(["1"]);
 const port = ref(8080);
 const context = ref("/test");
 const state = ref(false);

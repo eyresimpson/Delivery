@@ -2,15 +2,16 @@
   <div>
     <el-card>
       <span style="font-size: 20px">{{method}}</span>
-      <p style="text-align: left">源主机地址: {{ip}}</p>
-      <p v-if="param" style="text-align: left">请求参数</p>
-      <p v-if="data" style="text-align: left">请求数据:{{data}}</p>
+      <p >源主机地址: {{ipFilter(ip as string)}}</p>
+      <p v-if="param" >请求参数</p>
+      <p v-if="data" >请求数据:{{data}}</p>
     </el-card>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { defineProps } from "vue";
+import {ipFilter} from "@/tools/ip"
 
 defineProps({
   method: String,

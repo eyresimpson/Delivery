@@ -1,11 +1,13 @@
 <template>
   <nav>
-    <router-link to="/serve">监听</router-link> |
-    <router-link to="/about">请求</router-link> |
-    <router-link to="/">工具</router-link> |
-    <router-link to="/">配置</router-link>
+    <router-link to="/">开始</router-link> |
+    <router-link to="/serve">网络</router-link> |
+    <router-link to="/conf">配置</router-link> |
+    <router-link to="/about">关于</router-link>
   </nav>
-  <router-view />
+  <keep-alive>
+    <router-view />
+  </keep-alive>
 </template>
 <script lang="ts" setup>
 import { onMounted } from "vue";
@@ -13,6 +15,7 @@ onMounted(() => {
   // console.log("初始化开始");
   // console.log("初始化结束");
 });
+
 </script>
 
 <style>
@@ -22,7 +25,7 @@ onMounted(() => {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  
+
 }
 
 nav {
