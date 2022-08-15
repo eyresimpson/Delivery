@@ -22,106 +22,17 @@
           </div>
     </el-col>
   </el-row>
-  <div>
-    <div style="position: fixed; left: 40%; bottom: 25px">
-      <el-tag class="ml-2" :type="tagColor" style="margin-right: 10px">{{
-          tagText
-      }}</el-tag>
-      <el-button icon="Orange" :round="true" :color="buttonClolr" @click="handleClick">{{ buttonText }}</el-button>
-    </div>
-  </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onUnmounted } from "vue";
-import express from "express";
-import bodyParser from "body-parser";
 import RequestCard from '@/components/RequestCard.vue'
-import { getDatetime } from "@/tools/datetime"
-import { info } from "@/tools/recorder";
+import storeService from "@/store/service";
+import { storeToRefs } from "pinia";
 
-const port = ref(8080);
-const context = ref("/test");
-const state = ref(false);
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let requestList: any = reactive([]);
-let buttonText = ref("启动服务");
-let buttonClolr = ref("#626aef")
-let tagText = ref("未运行");
-let tagColor = ref("warning");
+const store = storeService()
 
-const app = express();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let serve: any;
+ const { requestList } = storeToRefs(store)
 
-
-onUnmounted(() => {
-  if (state.value) {
-    serve.close();
-  }
-});
-
-const handleClick = async () => {
-  if (state.value) {
-    // app.removeAllListeners();
-    serve.close();
-    buttonText.value = "启动服务";
-    buttonClolr.value = "#626aef";
-    state.value = false;
-    tagText.value = "已停止";
-    tagColor.value = "danger";
-  } else {
-    buttonText.value = "停用服务";
-    buttonClolr.value = "red";
-    state.value = true;
-    tagText.value = "已启动";
-    tagColor.value = "success";
-    if (!port.value) {
-      port.value = 8377;
-    }
-
-    // const { ipcRenderer } = require('electron')
-
-    // port.value = 8377;
-
-    app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(bodyParser.json());
-
-    app.get(context.value, (req, res) => {
-      // Get请求只能获取Query
-      // 获取参数中的query
-      // console.log();
-      info("The Query is " + String(req.query))
-      requestList.push({
-        "datetime": getDatetime(),
-        "method": "GET",
-        "ip": req.ip,
-      })
-      // 返回
-      res.send({ name: "Aine", age: 24 });
-    });
-
-    app.post(context.value, (req, res) => {
-      // 获取参数中的body
-      console.log("The Body is ", req.body);
-      // 获取参数中的query
-      console.log("The Query is ", req.query);
-      requestList.push({
-        "datetime": getDatetime(),
-        "method": "Post",
-        "ip": req.ip,
-        // "param"
-        "data": req.body
-      })
-      // 返回数据
-      res.send({ name: "Aine", age: 24 });
-    });
-
-    serve = app.listen(port.value, () => {
-      console.log(`listening on port ${port.value}`);
-    });
-  }
-};
 </script>
 
 <style>

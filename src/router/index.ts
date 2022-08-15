@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
   },{
     path: '/serve',
     name: 'serve',
-    component: ServeView 
+    component: ServeView
   }, 
   {
     path: '/about',
@@ -22,7 +22,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/conf',
     name: 'conf',
-    component:ConfigurationsView
+    component:ConfigurationsView,
+    meta:{
+      keepAlive: true,
+    }
   }
 ]
 

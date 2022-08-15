@@ -5,9 +5,7 @@
     <router-link to="/conf">配置</router-link> |
     <router-link to="/about">关于</router-link>
   </nav>
-  <keep-alive>
-    <router-view />
-  </keep-alive>
+  <router-view />
 </template>
 <script lang="ts" setup>
 import { onMounted } from "vue";
