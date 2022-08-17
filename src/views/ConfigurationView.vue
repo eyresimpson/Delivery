@@ -2,25 +2,29 @@
   <el-row class="mb-4" style="margin-bottom: 55px">
     <el-col :span="24">
       <el-row>
-        <span class="label">服务类型</span>
-        <el-input prefix-icon="HelpFilled" class="opt" v-model="httpPort" placeholder="开放的端口，默认8080" />
+        <span class="label">Http监听端口</span>
+        <el-input prefix-icon="Sunrise" class="opt" v-model="httpPort" placeholder="Http开放的端口，默认8787" />
       </el-row>
       <el-row>
-        <span class="label">端口</span>
-        <el-input prefix-icon="HelpFilled" class="opt" v-model="httpPort" placeholder="开放的端口，默认8080" />
+        <span class="label">Http上下文地址</span>
+        <el-input prefix-icon="Sunny" class="opt" v-model="context" placeholder="上下文地址" />
       </el-row>
       <el-row>
-        <span class="label">上下文地址</span>
-        <el-input prefix-icon="HelpFilled" class="opt" v-model="context" placeholder="上下文地址" />
+        <span class="label">Tcp监听端口</span>
+        <el-input prefix-icon="PartlyCloudy" class="opt" v-model="httpPort" placeholder="Tcp开放的端口，默认7878" />
       </el-row>
       <el-row>
-        <span class="label">返回数据</span>
-        <el-input prefix-icon="HelpFilled" class="opt" v-model="httpPort" placeholder="向后台返回的数据" />
+        <span class="label">启用日志</span>
+        <el-radio-group v-model="logType">
+          <el-radio :label="3">单文件日志</el-radio>
+          <el-radio :label="6">时间日志</el-radio>
+          <el-radio :label="9">大小日志</el-radio>
+        </el-radio-group>
       </el-row>
     </el-col>
   </el-row>
   <div>
-    <div style="position: fixed; left: 40%; bottom: 25px">
+    <div style="position: fixed; right: 10%; bottom: 25px">
       <el-tag class="ml-2" :type="tagColor" style="margin-right: 10px">{{
           tagText
       }}</el-tag>
@@ -30,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import {  onUnmounted, onMounted } from "vue";
+import { onUnmounted, onMounted, ref } from "vue";
 import storeService from "@/store/service";
 import storeStyle from "@/store/style";
 import { storeToRefs } from "pinia";
@@ -42,6 +46,7 @@ const styleStore = storeStyle()
 const { context, httpPort } = storeToRefs(serviceStore)
 const { buttonText, buttonClolr, tagText, tagColor } = storeToRefs(styleStore)
 
+let logType = ref("true");
 
 onMounted(() => {
   if (serviceStore.httpServiceState == "running") {

@@ -4,7 +4,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import { getDatetime } from "@/tools/datetime"
 import { info } from "@/tools/recorder";
-import { storeToRefs } from "pinia";
+// import { storeToRefs } from "pinia";
 import { toRaw } from '@vue/reactivity';
 
 const app = express();
@@ -12,7 +12,7 @@ const app = express();
 const createHttpServer = async () => {
     const serviceStore = storeService()
     const styleStore = storeStyle()
-    const { httpServiceObject } = storeToRefs(serviceStore)
+    // const { httpServiceObject } = storeToRefs(serviceStore)
 
     if (serviceStore.httpServiceState == "running") {
         toRaw(serviceStore.httpServiceObject).close();
