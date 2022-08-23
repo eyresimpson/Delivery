@@ -65,6 +65,7 @@ onMounted(() => {
 onUnmounted(() => {
   if (serviceStore.httpServiceState == "running") {
     // serveObject.close();
+    // jingZhen:
     // httpService.destroyHttpServer();
   }
 });

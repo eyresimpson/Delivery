@@ -26,49 +26,7 @@ async function createWindow() {
     }
   })
 
-  const menuTemplate = [
-    {
-      id: 'sys',
-      checked: true,
-      click: () => { console.log('sys'); },
-      // 设置菜单项文本
-      label: '工具',
-      // 设置子菜单
-      submenu: [
-        {
-          label: '快速启动Http服务器',
-          // 设置菜单的热键
-          accelerator: 'Ctrl+H',
-          click: () => {
-            // win.close();
-            console.log('Start Http');
-          }
-        },
-        {
-          label: '快速启动Tcp服务器',
-          // 设置菜单的热键
-          accelerator: 'Command+T',
-          click: () => {
-            // win.close();
-            console.log('Start Tcp');
-          }
-        },
-        {
-          label: '系统退出',
-          // 设置菜单的热键
-          accelerator: 'Command+Q',
-          click: () => {
-            win.close();
-          }
-        }
-      ]
-    }
-  ];
-  // 通过模板创建菜单
-  const menu = Menu.buildFromTemplate(menuTemplate);
-  // 设置菜单
-  Menu.setApplicationMenu(menu);
-
+  Menu.setApplicationMenu(null);
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
